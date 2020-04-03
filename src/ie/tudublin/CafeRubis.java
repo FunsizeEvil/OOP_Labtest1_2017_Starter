@@ -85,18 +85,29 @@ public class CafeRubis extends PApplet
             fill(0);
             text(p.getName(), billLeft + 10, y);
             textAlign(RIGHT, CENTER);
-            text(nf(p.getPrice(),0 ,100), billLeft + w - 10 , y );
+            text(nf(p.getPrice(),0 ,2), billLeft + w - 10 , y );
             y += 30;
             total += p.getPrice();
         }
 
         fill(0);
         textAlign(LEFT, CENTER);
-        text("Total:", + billLeft + 10, y);
+        text("Total:", billLeft + 10, y);
         textAlign(LEFT, CENTER);
-        text(nf(total, 0, 2), billLeft + w - 30, y);
+        text(nf(total, 0, 2), billLeft + w - 40, y);
 
 
+    }
+
+    public void mousePressed()
+    {
+        for(int i = 0; i < products.size() ; i++){
+            float y = map(i, 0, products.size(), border, height - border);
+            if( mouseX > left && mouseX < left + w && mouseY > y && mouseY < y +h){
+                bill.add(products.get(i));
+                break;
+            }
+        }
     }
 
     //call the functions
